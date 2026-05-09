@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellbeing Nutrition × Bombay on Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --mango: #FF9A1F;
+    --mango-deep: #E8610A;
+    --mango-pale: #FFF3E0;
+    --pool: #00B4D8;
+    --pool-deep: #0077A8;
+    --cream: #FDF6EC;
+    --night: #0D0A06;
+    --dust: #8B6F47;
+    --text: #1A1208;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--night);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── SLIDE SYSTEM ── */
+  .slide {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── SLIDE 1: COVER ── */
+  #s1 {
+    background: var(--night);
+    text-align: center;
+  }
+
+  #s1::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 110%, rgba(255,154,31,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 20%, rgba(0,180,216,0.08) 0%, transparent 60%);
+  }
+
+  .cover-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mango);
+    opacity: 0.8;
+    margin-bottom: 32px;
+    animation: fadeUp 1s ease 0.2s both;
+  }
+
+  .cover-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 12vw, 160px);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    animation: fadeUp 1s ease 0.4s both;
+  }
+
+  .cover-title span {
+    color: var(--mango);
+    display: block;
+  }
+
+  .cover-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--pool);
+    margin-top: 24px;
+    animation: fadeUp 1s ease 0.6s both;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--mango);
+    margin: 40px auto;
+    animation: scaleIn 0.8s ease 0.8s both;
+  }
+
+  .cover-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,243,224,0.4);
+    animation: fadeUp 0.8s ease 1s both;
+  }
+
+  /* ── SLIDE 2: CULTURAL TRUTH ── */
+  #s2 {
+    background: var(--cream);
+    color: var(--text);
+    padding: 100px 80px;
+  }
+
+  #s2::before {
+    content: 'आम';
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40vw;
+    font-weight: 300;
+    color: rgba(255,154,31,0.06);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .slide-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--mango);
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    opacity: 0.7;
+  }
+
+  .truth-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mango-deep);
+    margin-bottom: 20px;
+  }
+
+  .truth-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5.5vw, 80px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+    max-width: 900px;
+  }
+
+  .truth-headline em {
+    font-style: italic;
+    color: var(--mango-deep);
+  }
+
+  .truth-body {
+    font-size: clamp(16px, 1.6vw, 22px);
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(26,18,8,0.65);
+    max-width: 680px;
+    margin-top: 40px;
+  }
+
+  .truth-body strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ── SLIDE 3: THE PROPOSITION ── */
+  #s3 {
+    background: var(--mango);
+    color: var(--night);
+    text-align: center;
+  }
+
+  #s3::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 80% at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 70%),
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(0,0,0,0.03) 40px,
+        rgba(0,0,0,0.03) 41px
+      );
+  }
+
+  .prop-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(13,10,6,0.5);
+    margin-bottom: 40px;
+  }
+
+  .prop-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 9vw, 130px);
+    line-height: 0.92;
+    color: var(--night);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .prop-big .white {
+    color: white;
+  }
+
+  .prop-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2vw, 26px);
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(13,10,6,0.6);
+    margin-top: 32px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── SLIDE 4: THE EVENT ── */
+  #s4 {
+    background: var(--night);
+    padding: 100px 80px;
+    align-items: flex-start;
+  }
+
+  #s4::after {
+    content: '';
+    position: absolute;
+    right: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,216,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .event-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--pool);
+    margin-bottom: 24px;
+  }
+
+  .event-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 8vw, 120px);
+    line-height: 0.9;
+    color: var(--cream);
+    margin-bottom: 48px;
+  }
+
+  .event-title span { color: var(--mango); }
+
+  .event-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    max-width: 900px;
+  }
+
+  .event-cell {
+    background: rgba(255,243,224,0.04);
+    border: 1px solid rgba(255,243,224,0.08);
+    padding: 36px 32px;
+    transition: background 0.3s ease;
+  }
+
+  .event-cell:hover {
+    background: rgba(255,154,31,0.08);
+  }
+
+  .cell-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--mango);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .cell-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mango);
+    margin-bottom: 12px;
+  }
+
+  .cell-body {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(253,246,236,0.6);
+  }
+
+  /* ── SLIDE 5: THE COMMUNITY ── */
+  #s5 {
+    background: var(--cream);
+    color: var(--text);
+    padding: 100px 80px;
+    align-items: flex-start;
+  }
+
+  .stat-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mango-deep);
+    margin-bottom: 48px;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 0;
+    margin-bottom: 64px;
+    border-top: 1px solid rgba(26,18,8,0.12);
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 40px 0 40px 0;
+    border-bottom: 1px solid rgba(26,18,8,0.12);
+    border-right: 1px solid rgba(26,18,8,0.08);
+    padding-right: 40px;
+    margin-right: 40px;
+  }
+
+  .stat-item:last-child {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 1;
+    color: var(--mango-deep);
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(26,18,8,0.45);
+  }
+
+  .community-desc {
+    font-size: clamp(18px, 2vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.75;
+    color: rgba(26,18,8,0.7);
+    max-width: 720px;
+    border-left: 3px solid var(--mango);
+    padding-left: 32px;
+  }
+
+  .community-desc strong {
+    color: var(--text);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* ── SLIDE 6: BRAND MOMENT ── */
+  #s6 {
+    background: var(--pool-deep);
+    text-align: center;
+    padding: 100px 80px;
+  }
+
+  #s6::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 50% 0%, rgba(255,154,31,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 40% at 50% 100%, rgba(0,0,0,0.3) 0%, transparent 70%);
+  }
+
+  .brand-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(253,246,236,0.5);
+    margin-bottom: 40px;
+  }
+
+  .brand-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 72px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: white;
+    max-width: 860px;
+    margin: 0 auto 56px;
+  }
+
+  .brand-headline em {
+    font-style: italic;
+    color: var(--mango);
+  }
+
+  .brand-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    max-width: 960px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .brand-item {
+    background: rgba(0,119,168,0.6);
+    padding: 36px 28px;
+    text-align: left;
+  }
+
+  .brand-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .brand-item-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mango);
+    margin-bottom: 10px;
+  }
+
+  .brand-item-body {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* ── SLIDE 7: THE ASK / CLOSE ── */
+  #s7 {
+    background: var(--night);
+    text-align: center;
+  }
+
+  #s7::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 70% at 50% 100%, rgba(255,154,31,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 30% at 80% 20%, rgba(0,180,216,0.06) 0%, transparent 60%);
+  }
+
+  .close-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(253,246,236,0.35);
+    margin-bottom: 40px;
+  }
+
+  .close-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 9vw, 130px);
+    line-height: 0.9;
+    color: var(--cream);
+    margin-bottom: 32px;
+  }
+
+  .close-title span { color: var(--mango); }
+
+  .close-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.75;
+    color: rgba(253,246,236,0.55);
+    max-width: 640px;
+    margin: 0 auto 56px;
+  }
+
+  .close-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 48px;
+  }
+
+  .logo-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 1px solid rgba(255,243,224,0.15);
+    color: rgba(253,246,236,0.5);
+  }
+
+  .logo-x {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-style: italic;
+    color: rgba(253,246,236,0.2);
+  }
+
+  /* ── NAV DOTS ── */
+  .nav {
+    position: fixed;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 100;
+  }
+
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(253,246,236,0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+  .nav-dot.active {
+    background: var(--mango);
+    transform: scale(1.5);
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(253,246,236,0.25);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* ── SECTION DIVIDERS ── */
+  .thin-line {
+    width: 48px;
+    height: 1px;
+    background: currentColor;
+    margin-bottom: 32px;
+    opacity: 0.3;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scaleIn {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 0.6; }
+  }
+
+  /* ── INTERSECTION OBSERVER ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+  .reveal-delay-4 { transition-delay: 0.6s; }
+
+  @media (max-width: 768px) {
+    .slide { padding: 60px 32px; }
+    .event-grid { grid-template-columns: 1fr; }
+    .brand-list { grid-template-columns: 1fr; }
+    .stats-row { flex-direction: column; }
+    .stat-item { border-right: none; margin-right: 0; padding-right: 0; }
+    .nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV DOTS -->
+<nav class="nav">
+  <button class="nav-dot active" onclick="scrollToSlide(0)"></button>
+  <button class="nav-dot" onclick="scrollToSlide(1)"></button>
+  <button class="nav-dot" onclick="scrollToSlide(2)"></button>
+  <button class="nav-dot" onclick="scrollToSlide(3)"></button>
+  <button class="nav-dot" onclick="scrollToSlide(4)"></button>
+  <button class="nav-dot" onclick="scrollToSlide(5)"></button>
+  <button class="nav-dot" onclick="scrollToSlide(6)"></button>
+</nav>
+
+<!-- SLIDE 1: COVER -->
+<section class="slide" id="s1">
+  <p class="cover-eyebrow">A Proposal — Bombay on Foot × Wellbeing Nutrition</p>
+  <h1 class="cover-title">
+    The Mango
+    <span>Drop.</span>
+  </h1>
+  <p class="cover-sub">Mumbai's biggest run & pool party. End of May 2025.</p>
+  <div class="cover-divider"></div>
+  <p class="cover-date">Confidential · Not for distribution</p>
+  <p class="scroll-hint">↓ Scroll</p>
+</section>
+
+<!-- SLIDE 2: CULTURAL TRUTH -->
+<section class="slide" id="s2">
+  <div style="position:relative; z-index:1; width:100%; max-width:1000px;">
+    <p class="truth-tag reveal">01 — The Insight</p>
+    <div class="thin-line reveal reveal-delay-1" style="color: var(--mango-deep);"></div>
+    <h2 class="truth-headline reveal reveal-delay-1">
+      Before there was summer,<br>
+      there was <em>aam ka mausam.</em>
+    </h2>
+    <p class="truth-body reveal reveal-delay-2">
+      Every June, before pools, before playlists, before everything — the mango arrived. It was India's original summer ritual. <strong>Street corners. School lunch boxes. Aamras on Sunday.</strong> The mango was never just a fruit. It was the smell of vacation, the taste of 45-degree afternoons, the thing every Indian summer orbits around.
+      <br><br>
+      Then the West entered. Pool parties. Rooftops. Cold drinks in wet hands. A new summer aesthetic layered itself over the old one — and somewhere in that overlap is <strong>the most electric cultural moment Mumbai hasn't capitalized on yet.</strong>
+      <br><br>
+      Until now.
+    </p>
+  </div>
+</section>
+
+<!-- SLIDE 3: THE PROPOSITION -->
+<section class="slide" id="s3">
+  <p class="prop-label reveal">02 — The Idea</p>
+  <h2 class="prop-big reveal reveal-delay-1">
+    Run it.<br>
+    <span class="white">Dive in.</span><br>
+    Drink up.
+  </h2>
+  <p class="prop-sub reveal reveal-delay-2">
+    One event. Two cultures. The mango, the pool, and 19,000 people who were born to move.
+  </p>
+</section>
+
+<!-- SLIDE 4: THE EVENT -->
+<section class="slide" id="s4">
+  <div style="position:relative; z-index:1; width:100%; max-width:1000px;">
+    <p class="event-tag reveal">03 — The Event</p>
+    <h2 class="event-title reveal reveal-delay-1">
+      The<br><span>Mango</span><br>Drop.
+    </h2>
+    <div class="event-grid reveal reveal-delay-2">
+      <div class="event-cell">
+        <div class="cell-num">01</div>
+        <p class="cell-title">The Run</p>
+        <p class="cell-body">Mumbai's most iconic run club kicks it off. A morning run — timed, community-paced, photographed. The kind of run that earns the pool.</p>
+      </div>
+      <div class="event-cell">
+        <div class="cell-num">02</div>
+        <p class="cell-title">The Drop</p>
+        <p class="cell-body">Finish line leads directly into a pool venue. Cold water, hot sun, mango everywhere. The reward isn't a medal. It's the plunge.</p>
+      </div>
+      <div class="event-cell">
+        <div class="cell-num">03</div>
+        <p class="cell-title">The Drink</p>
+        <p class="cell-body">Wellbeing Nutrition's new mango electrolyte RTD is the official drink of the day. Every touchpoint — the hydration station, the finish line, poolside — is yours.</p>
+      </div>
+      <div class="event-cell">
+        <div class="cell-num">04</div>
+        <p class="cell-title">The Moment</p>
+        <p class="cell-body">Designed to be filmed. Every corner is a content frame. 19K followers, creators in attendance, and a product launch built for virality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: THE COMMUNITY -->
+<section class="slide" id="s5">
+  <div style="width:100%; max-width:1000px;">
+    <p class="stat-tag reveal">04 — Who We Are</p>
+    <div class="stats-row reveal reveal-delay-1">
+      <div class="stat-item">
+        <div class="stat-num">19K</div>
+        <p class="stat-label">Instagram Followers</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">#1</div>
+        <p class="stat-label">Run Club in Mumbai</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <p class="stat-label">Active Community</p>
+      </div>
+    </div>
+    <blockquote class="community-desc reveal reveal-delay-2">
+      <strong>Bombay on Foot</strong> isn't a fitness page. It's Mumbai's most engaged movement community — people who wake at 7am not because they have to, but because they're genuinely obsessed with the city and their bodies. <strong>They are exactly the consumer Wellbeing Nutrition was built for.</strong> Health-first, aesthetically aware, socially plugged in, and deeply loyal to brands that show up in their real life — not just their feed.
+    </blockquote>
+  </div>
+</section>
+
+<!-- SLIDE 6: BRAND MOMENT -->
+<section class="slide" id="s6">
+  <div style="position:relative; z-index:1; width:100%; max-width:1000px;">
+    <p class="brand-eyebrow reveal">05 — What Wellbeing Nutrition Gets</p>
+    <h2 class="brand-headline reveal reveal-delay-1">
+      This isn't a sponsorship.<br>
+      It's your <em>launch stage.</em>
+    </h2>
+    <div class="brand-list reveal reveal-delay-2">
+      <div class="brand-item">
+        <span class="brand-icon">🥭</span>
+        <p class="brand-item-title">Product in Hand</p>
+        <p class="brand-item-body">Your mango RTD is the first drink every runner reaches for after crossing the finish line. That moment of need, at scale.</p>
+      </div>
+      <div class="brand-item">
+        <span class="brand-icon">🎨</span>
+        <p class="brand-item-body brand-item-title">Full Brand Ownership</p>
+        <p class="brand-item-body">Branded hydration stations, event signage, welcome kits, poolside activations. Every visual element carries Wellbeing Nutrition.</p>
+      </div>
+      <div class="brand-item">
+        <span class="brand-icon">📱</span>
+        <p class="brand-item-title">Content That Travels</p>
+        <p class="brand-item-body">Reels, POVs, creator content — all shot the same day, all featuring your product at peak, shareable, golden-hour moments.</p>
+      </div>
+      <div class="brand-item">
+        <span class="brand-icon">🌊</span>
+        <p class="brand-item-title">Cultural Fit</p>
+        <p class="brand-item-body">The mango RTD launches at an event built around mangoes. The narrative writes itself — and the consumer feels it, not just sees it.</p>
+      </div>
+      <div class="brand-item">
+        <span class="brand-icon">🏃</span>
+        <p class="brand-item-title">Right Audience</p>
+        <p class="brand-item-body">Fitness-obsessed, nutrition-aware, 20s–30s Mumbai crowd. This is your target demographic at their most engaged and receptive.</p>
+      </div>
+      <div class="brand-item">
+        <span class="brand-icon">🤝</span>
+        <p class="brand-item-title">Co-Creation</p>
+        <p class="brand-item-body">Bombay on Foot handles the community. You bring the product. Together we build something bigger than either brand does alone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 7: CLOSE -->
+<section class="slide" id="s7">
+  <p class="close-eyebrow reveal">06 — Let's Build It</p>
+  <h2 class="close-title reveal reveal-delay-1">
+    Mumbai<br>hasn't seen<br><span>this yet.</span>
+  </h2>
+  <p class="close-body reveal reveal-delay-2">
+    The mango and the pool party have always existed in the same city. Nobody has put them together — with the right community, the right product, and the right moment — until now.
+  </p>
+  <div class="close-logos reveal reveal-delay-3">
+    <div class="logo-badge">Bombay on Foot</div>
+    <span class="logo-x">×</span>
+    <div class="logo-badge">Wellbeing Nutrition</div>
+  </div>
+</section>
+
+<script>
+  // Intersection observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav dots
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.nav-dot');
+
+  const slideObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(slides).indexOf(entry.target);
+        dots.forEach(d => d.classList.remove('active'));
+        if (dots[idx]) dots[idx].classList.add('active');
+      }
+    });
+  }, { threshold: 0.5 });
+
+  slides.forEach(s => slideObserver.observe(s));
+
+  function scrollToSlide(idx) {
+    slides[idx].scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
